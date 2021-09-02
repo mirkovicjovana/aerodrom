@@ -1,0 +1,54 @@
+drop table if exists Aerodrom;
+
+drop table if exists Let;
+
+/*==============================================================*/
+/* Table: Aerodrom                                              */
+/*==============================================================*/
+create table Aerodrom
+(
+   aerodromId           int not null auto_increment,
+   grad                 varchar(30) not null,
+   naziv                varchar(20) not null,
+   skracenica           varchar(5) not null,
+   primary key (aerodromId)
+);
+
+
+
+/*==============================================================*/
+/* Table: Let                                                   */
+/*==============================================================*/
+create table Let
+(
+   letId                int not null auto_increment,
+   aerodromIdPolazni    int not null,
+   aerodromIdDolazni    int not null,
+   brojLeta             varchar(10) not null,
+   vremeLeta            varchar(10) not null,
+   datumLeta            varchar(10) not null,
+   primary key (letId)
+);
+
+
+alter table Let add constraint FK_dolazni foreign key (aerodromIdDolazni)
+      references Aerodrom (aerodromId) on delete restrict on update restrict;
+
+alter table Let add constraint FK_polazni foreign key (aerodromIdPolazni)
+      references Aerodrom (aerodromId) on delete restrict on update restrict;
+
+
+
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (10, 'Beograd', 'Nikola Tesla', 'BEG');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (11, 'Njujork', 'John F Kannedy', 'JFK');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (12, 'Njujork', 'La Guardia', 'LGA');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (13, 'Berlin', 'Tegel', 'TXL');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (14, 'Berlin', 'Schoenefeld' , 'SXF');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (15, 'London', 'Heathrow', 'LHR');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (16, 'London', 'Gatwick', 'LGW');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (17, 'London', 'Luton', 'LTN');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (18, 'Pariz', 'Charls de Gaulle', 'CDG');
+insert into AERODROM (aerodromid, grad, naziv, skracenica) values (19, 'Pariz', 'Orly', 'ORY');
+
+
+
